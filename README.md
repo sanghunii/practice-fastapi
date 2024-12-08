@@ -6,4 +6,4 @@ repository for practice fastAPI
 - DB : PostgreSQL (ORM - sqlalchemy)
 
 <br><br>
-[jjanggu-nextjs](../sanghunii/jjanggu-nextjs)
+[여기](../sanghunii/jjanggu-NextJS)에서 FastAPI만든거 테스트할 수 있음!!
