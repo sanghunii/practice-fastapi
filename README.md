@@ -1,2 +1,3 @@
 # practice-fastapi
-practice FastAPI 
+- practice FastAPI
+- use **poetry** for package management tool
