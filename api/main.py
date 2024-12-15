@@ -1,5 +1,9 @@
-from fastapi import FastAPI
-from starlette.middleware.cors import CORSMiddleware
+from fastapi import FastAPI #for use FastAPI
+from starlette.middleware.cors import CORSMiddleware #for solve CORS problem
+
+#SQLAlchemy-ORM
+##여기서 데이터 가져와서 창 띄워보기 
+from . import test_orm
 
 app = FastAPI()
 
@@ -17,6 +21,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+##APIs
 @app.get("/")
 async def root():
     return {"message": "Test api"}
@@ -24,3 +30,5 @@ async def root():
 @app.get("/items")
 async def root():
     return {"message": "this is items page"}
+
+
