@@ -28,6 +28,8 @@ class Address(Base):
     street_name = Column(String(250))
     street_number = Column(String(250))
     post_code = Column(String(250), nullable=False) ##nullable=False가 django ORM에서 null=True인듯
+    person_id = Column(Integer, ForeignKey('person.id'))
+    person = relationship(Person)
     
 
 ## Create an engine that stores data in the local directory's sqlalchemy_example.db file

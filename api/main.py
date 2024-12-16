@@ -3,7 +3,6 @@ from starlette.middleware.cors import CORSMiddleware #for solve CORS problem
 
 #SQLAlchemy-ORM
 ##여기서 데이터 가져와서 창 띄워보기 
-from . import test_orm
 
 app = FastAPI()
 
@@ -31,4 +30,6 @@ async def root():
 async def root():
     return {"message": "this is items page"}
 
-
+@app.get("/test")
+async def test():
+    return {"test FastAPI"}
