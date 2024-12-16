@@ -38,3 +38,5 @@ engine = create_engine('sqlite:///sqlalchemy_example.db')
 ## Create all tables in the engine. This is equivalent to "Create Table"
 ## statements in raw SQL.
 Base.metadata.create_all(engine)
+#Database를 초기 생성할 때는 declarative_base().metadata.create_all()을 이용해서 Table을 생성
+#만약 이미 DB에 생성 되어 있는 Table과 연결할 때는 create_all() method가 아닌 bind method사용.
