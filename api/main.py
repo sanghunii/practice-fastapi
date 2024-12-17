@@ -1,8 +1,12 @@
 from fastapi import FastAPI #for use FastAPI
 from starlette.middleware.cors import CORSMiddleware #for solve CORS problem
 
-#SQLAlchemy-ORM
-##여기서 데이터 가져와서 창 띄워보기 
+from enum import Enum
+
+class ModelName(str, Enum):
+    alexnet = "alexnet"
+    rsenet = "resnet"
+    lenet = "lenet"
 
 app = FastAPI()
 
@@ -21,6 +25,8 @@ app.add_middleware(
 )
 
 
+
+
 ##APIs
 @app.get("/")
 async def root():
@@ -30,6 +36,18 @@ async def root():
 async def root():
     return {"message": "this is items page"}
 
-@app.get("/test")
-async def test():
-    return {"test FastAPI"}
+@app.get("/test/{id}")
+async def test(id : int):
+    return {id}
+
+
+
+###Test code
+@app.get("/models/{model_name}")
+async def get_model(model_name : ModelName): ##python typehint사용
+    if model_name is ModelName.alexnet:
+        return {"model_name" : model_name, "message": "Deep Learning FTW"}
+    if model_name is ModelName.lenet:
+        return {"model_name" : model_name.value}
+    
+    return {"model_name" : model_name, "message": "Have some residuals"}
