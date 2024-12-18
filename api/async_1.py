@@ -8,7 +8,7 @@ async def some_library(num: int, something: str):
     s = 0
     for i in range(num):
         print(" somthing....", something, i)
-        time.sleep(1)
+        time.sleep(1)       ##time.sleep()은 block형식임
         s += 1
     
     return s
