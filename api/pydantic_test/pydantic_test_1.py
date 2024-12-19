@@ -20,4 +20,5 @@ tmp_data = {
 }
 
 tmp_movie = Movie(**tmp_data)
-print(tmp_movie)
+print('tmp_movie : ', tmp_movie, '\n\n\n')
+print('temp_movie_model_dump : ', tmp_movie.model_dump())

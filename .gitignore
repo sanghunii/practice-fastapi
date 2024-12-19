@@ -4,3 +4,8 @@
 
 
 __pycache__
+
+
+
+##test env file for Pydantic/BaseSettings_test.py
+.env_ex
