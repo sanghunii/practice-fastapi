@@ -6,8 +6,8 @@ pyton annotation을 이용해서 input data, output data에 대한 검증을 손
 
 `pydantic.BaseModel`을 상속하여 클래스 각 멤버에 대한 데이터 검증을 손쉽게 할 수 있다.
 
-[예제코드1]("pydnatic_test_1.py")
-[예제코드2]("pydnatic_test_1.py")
+[예제코드1](pydnatic_test_1.py)
+[예제코드2](pydnatic_test_1.py)
 
 
 ## BaseSEttings
@@ -15,11 +15,11 @@ pyton annotation을 이용해서 input data, output data에 대한 검증을 손
 
 `load_env()`를 사용하지 않고 env값을 쉽게 가져올 수 있다.
 
-[예제코드]("pydnatic_example.py")
+[예제코드](pydnatic_example.py)
 
 
 ## fastapi에서 pydantic 사용
 
 fastapi에서는 pydantic을 이용해서 데이터의 검증을 진행한다. 
 
-[예제코드]("pydantic-fastapi.py")
+[예제코드](pydantic-fastapi.py)
