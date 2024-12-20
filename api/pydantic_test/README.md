@@ -10,13 +10,16 @@ pyton annotation을 이용해서 input data, output data에 대한 검증을 손
 [예제코드2](pydantic_test_1.py)
 
 
-## BaseSEttings
+## BaseSettings
 `pydantic-settings.BaseSettings`를 상속한 클래스를 이용해서 Settings와 관련된 것들(env등)에 대한 정의를 할 수 있다.
 
 `load_env()`를 사용하지 않고 env값을 쉽게 가져올 수 있다.
 
-[예제코드](pydantic_example.py)
+[예제코드](BaseSettings_test.py)
 
+
+## BaseModel과 BaseSettings 동시에 사용
+[예제코드](pydantic_example.py)
 
 ## fastapi에서 pydantic 사용
 
