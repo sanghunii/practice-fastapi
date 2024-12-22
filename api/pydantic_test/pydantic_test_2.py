@@ -40,5 +40,5 @@ tmp_user_data = {
 
 tmp_movie = Movie(**tmp_movie_data)
 tmp_user_data = User(**tmp_user_data)
-print(tmp_movie.json())
-print(tmp_user_data.json())
+print(tmp_movie.model_dump_json())
+print(tmp_user_data.model_dump_json())
