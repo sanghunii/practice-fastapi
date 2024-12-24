@@ -1,7 +1,3 @@
-#######20241213 FastAPI써서 DB에서 값 꺼내와서 front로 전달하기 -> 실패! ㅋ 
-
-
-
 ##improt fastapi
 from fastapi import FastAPI
 ##CORS
@@ -11,15 +7,16 @@ from starlette.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 ##from sqlalchemy_declarative import Base, Address, Person
-from database.sqlalchemy_declarative import Base, Address, Person
+from sqlalchemy_declarative import Base, Address, Person
 
 ##FastAPI를 이용하기 위한 준비
 app = FastAPI()
 
 ##CORS
 origins = [
-    "http://localhos:3000",
+    "http://localhost:3000",
 ]
+
 ##CORS
 app.add_middleware(
     CORSMiddleware,
@@ -56,5 +53,6 @@ id, int, 1이상
 def get_data(id: int):
     DBSession = sessionmaker(bind = engine)  ##connect sessionmaker to DataBase
     session = DBSession() ##Open DB session.
-    res = session.get(Person,1)
+    res = session.get(Person,id)
     return {'person': res.name}
+    ##DB에서 값 꺼내서 front로 넘기기 성공 !! 
