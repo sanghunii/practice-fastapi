@@ -1,3 +1,5 @@
+## Create GET and POST fastapi and test
+
 ##improt fastapi
 from fastapi import FastAPI
 ##CORS
@@ -45,7 +47,7 @@ API resonse form
 QueryParameter
 id, int, 1이상 
 
-실제 fastapi logic을 저달되는 url은 아래와 같다.
+실제 fastapi logic에 전달되는 url은 아래와 같다.
 /person?id={int값}
 """
 @app.get("/person")
