@@ -16,7 +16,7 @@ app = FastAPI()
 
 ##CORS
 origins = [
-    "http://localhost:3000",
+    "http://localhost:3001",
 ]
 
 ##CORS
@@ -50,11 +50,27 @@ id, int, 1이상
 실제 fastapi logic에 전달되는 url은 아래와 같다.
 /person?id={int값}
 """
-@app.get("/person")
+@app.get("/person", status_code=200)
 ##async def get_data(id: int):
 def get_data(id: int):
-    DBSession = sessionmaker(bind = engine)  ##connect sessionmaker to DataBase
+    DBSession = sessionmaker(bind = engine)  ##connect DB Session
     session = DBSession() ##Open DB session.
     res = session.get(Person,id)
+    session.close() ##close db session.
+
     return {'person': res.name}
-    ##DB에서 값 꺼내서 front로 넘기기 성공 !! 
+
+
+@app.post("/new_person", status_code=201)
+async def post_data(request: str):
+    DBSession = sessionmaker(bind=engine) ##connect DB Session
+    session = DBSession()
+    new_person = Person(name = request.name)
+    session.add(new_person)
+    session.commit()
+    ##DB에 새로운 행을 삽입(INSERT)하게 되면 ORM이 각각의 새 객체에 대하여 primary key식별자를 검색할 수 있는 효과를 가져온다. 
+    ##이에 아래와 같이 INSERT한 객체를 DB상 primary key를 추적할 수 있다.
+    id = new_person.id
+    session.close() ##close DB session
+    
+    return {'id': id}
