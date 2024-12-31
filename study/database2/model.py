@@ -35,4 +35,4 @@ SQLALCHEMY_DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{
 #만들어놓은 DB랑 연결해주는 engine 만들기 
 engine = create_engine(SQLALCHEMY_DB_URL, echo=False)
 
-Base.metadata.create_all(engine)
+Base.metadata.create_all

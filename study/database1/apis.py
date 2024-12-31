@@ -36,12 +36,12 @@ app.add_middleware(
 
 ##Connect DataBase(SQLite)
 #create engine
-engine = create_engine('sqlite:///sqlalchemy_example.db')      ########이쪽 부분만 postgreSQL Database Link로 바꿔서 테스트하면 될거같은뎅
+engine = create_engine('sqlite:///sqlalchemy_example.db')
 #Bind DataBase
 Base.metadata.bind = engine
 
 
-##validate input data (for post api)
+
 class Item(BaseModel):
     name: str
 

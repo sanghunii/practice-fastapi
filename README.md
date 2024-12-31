@@ -16,9 +16,8 @@ FastAPI에서 sqlalchemy를 사용하여 DB(Sqlite)에서 값을 꺼내와서 fr
 ## study/database2/
 ### postgreSQL사용
 database1 학습 내용에서 몇가지가 추가됨 추가된 것은 아래와 같음
-> 1. `get`, `post` api 구현 <br>
-> 2. uvicorn worker class이용한 비동기 처리 구현 <br>
-> 3. redis + celery 이용해서 비동기 처리 구현.
+> 1. uvicorn worker class이용한 비동기 처리 구현 <br>
+> 2. redis + celery 이용해서 비동기 처리 구현.
 
 <br><br>
 
