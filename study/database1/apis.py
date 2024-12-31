@@ -11,12 +11,17 @@ from sqlalchemy.orm import sessionmaker
 ##from sqlalchemy_declarative import Base, Address, Person
 from sqlalchemy_declarative import Base, Address, Person
 
+
+##pydnatic-for I/O data validation
+from pydantic import BaseModel
+
+
 ##FastAPI를 이용하기 위한 준비
 app = FastAPI()
 
 ##CORS
 origins = [
-    "http://localhost:3001",
+    "http://localhost:3000",
 ]
 
 ##CORS
@@ -36,20 +41,13 @@ engine = create_engine('sqlite:///sqlalchemy_example.db')
 Base.metadata.bind = engine
 
 
-##API구현 
-"""
-API request url (request form)
-"/person"
 
-API resonse form
-{person: response}
+class Item(BaseModel):
+    name: str
 
-QueryParameter
-id, int, 1이상 
 
-실제 fastapi logic에 전달되는 url은 아래와 같다.
-/person?id={int값}
-"""
+
+
 @app.get("/person", status_code=200)
 ##async def get_data(id: int):
 def get_data(id: int):
@@ -62,7 +60,7 @@ def get_data(id: int):
 
 
 @app.post("/new_person", status_code=201)
-async def post_data(request: str):
+async def post_data(request: Item):
     DBSession = sessionmaker(bind=engine) ##connect DB Session
     session = DBSession()
     new_person = Person(name = request.name)
