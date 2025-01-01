@@ -10,11 +10,18 @@ from starlette.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 ##from sqlalchemy_declarative import Base, Address, Person
-from model import Base, Address, Person
+from model import Base, Person
 
 
 ##pydnatic-for I/O data validation
 from pydantic import BaseModel
+
+
+##환경변수 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 ##FastAPI를 이용하기 위한 준비
@@ -35,9 +42,20 @@ app.add_middleware(
 )
 
 
-##Connect DataBase(SQLite)
-#create engine
-engine = create_engine('sqlite:///sqlalchemy_example.db')      ########이쪽 부분만 postgreSQL Database Link로 바꿔서 테스트하면 될거같은뎅
+##Connect DataBase(postgreSQL)
+##postgresql이랑 연결하기 
+DB_USER = os.environ.get('db_user')
+DB_PASSWORD = os.environ.get('db_password')
+DB_HOST = os.environ.get('db_host')
+DB_PORT = os.environ.get('db_port')
+DB_DATABASE = os.environ.get('db_database')
+
+#SQLALCHEMY_DATABASE_URL = "postgresql://user:password@localhost/dbname" 이걸 써야하나 .. ? 
+#dsn = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_database}" 이걸 써야하나? 
+
+SQLALCHEMY_DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+
+engine = create_engine(SQLALCHEMY_DB_URL, echo=False)
 #Bind DataBase
 Base.metadata.bind = engine
 
@@ -48,17 +66,7 @@ class Item(BaseModel):
 
 
 
-
-
-
-
-
-
-
-
-
-
-##예시코드 
+##GET & POST API for postgreSQL
 @app.get("/person", status_code=200)
 ##async def get_data(id: int):
 def get_data(id: int):

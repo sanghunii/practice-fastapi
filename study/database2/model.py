@@ -27,8 +27,6 @@ DB_HOST = os.environ.get('db_host')
 DB_PORT = os.environ.get('db_port')
 DB_DATABASE = os.environ.get('db_database')
 
-#SQLALCHEMY_DATABASE_URL = "postgresql://user:password@localhost/dbname" 이걸 써야하나 .. ? 
-#dsn = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_database}" 이걸 써야하나? 
 
 SQLALCHEMY_DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 
