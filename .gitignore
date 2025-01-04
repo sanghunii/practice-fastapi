@@ -12,5 +12,6 @@ __pycache__/
 
 
 
+
 ##SQLite DB file
 sqlalchemy_example.db
