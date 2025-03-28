@@ -8,6 +8,9 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
+##for Streaming Response
+from fastapi.responses import StreamingResponse
+
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
 
@@ -42,38 +45,24 @@ async def chat():
     )
     ##parsing(get chatbot's answer)
     
-    # streaming response
-    for chunck in stream:
-        if chunck.choices[0].delta.content is not None:
-            return {'anser' : chunck.choices[0].delta.content}
+    async def stream_response():
+        for chunck in stream:
+            if chunck.choices[0].delta.content is not None:
+                yield chunck.choices[0].delta.content
     
+    return StreamingResponse(stream_response(), media_type = "text/plain")
+
+
+   ##return {'anser' : chunck.choices[0].delta.content} 
+
 
 
 """
-client = OpenAI()
-
-stream = client.chat.completions.create(
-    model="gpt-4o",
-    messages=[
-        {
-            "role": "user",
-            "content": "Say 'double bubble bath' ten times fast.",
-        },
-    ],
-    stream=True,
-)
-
-for chunk in stream:
-    if chunk.choices[0].delta.content is not None:
-        print(chunk.choices[0].delta.content, end="")
-"""
-
-
-""" referecne
-
-https://chatgpt.com/share/6778fd12-d9cc-800b-ac1f-eeb0bd0b04f5
-
-
-""previous response code
-answer: str = response.choices[0].message.content
+# 스트리밍 응답 생성
+    async def stream_response():
+        for chunk in stream:
+            if chunk.choices[0].delta.content is not None:
+                yield chunk.choices[0].delta.content
+    
+    return StreamingResponse(stream_response(), media_type="text/plain")
 """
